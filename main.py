@@ -26,9 +26,12 @@ def makeSubtitleLineTime(fromFile, toFile):
 
     plt.show()  #To display the plots graphically
 
-
-
 makeSubtitleLineTime('./raw/woman/harina.mp3', './normalized/harina.wav')
 makeSubtitleLineTime('./raw/woman/harina.mp3', './normalized/marina.wav')
 makeSubtitleLineTime('./raw/woman/harina.mp3', './normalized/manzana.wav')
 makeSubtitleLineTime('./raw/woman/harina.mp3', './normalized/banana.wav')
+
+makeSubtitleLineTime('./raw/man/harina.mp3', './normalized/harina.wav')
+makeSubtitleLineTime('./raw/man/harina.mp3', './normalized/marina.wav')
+makeSubtitleLineTime('./raw/man/harina.mp3', './normalized/manzana.wav')
+makeSubtitleLineTime('./raw/man/harina.mp3', './normalized/banana.wav')
