@@ -6,14 +6,14 @@ from file import read_file, delete_file, execute_cmd
 
 def compareWordWithDictionary(word):
     #Loading audio file
-    y1, sr1 = librosa.load("./raw/woman/"+word+".mp3")
+    y1, sr1 = librosa.load("./raw/man/"+word+".mp3")
 
     with open('./dictionary.txt') as f:
         for line in f.read().splitlines():
             execute_cmd('sh ./say.sh '+line)
 
             y2, sr2 = librosa.load("./normalized/"+ line +".wav")
-            #delete_file("./normalized/"+ line +".wav")
+            delete_file("./normalized/"+ line +".wav")
 
             #Computing MFCC values
             mfcc1 = librosa.feature.mfcc(y1,sr1)
