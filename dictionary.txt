@@ -12,3 +12,7 @@ colectivo
 botella
 termo
 gimnasio
+coleccion
+televisor
+elefante
+walter

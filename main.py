@@ -10,9 +10,9 @@ def compareWordWithDictionary(word):
 
     with open('./dictionary.txt') as f:
         for line in f.read().splitlines():
-            #execute_cmd('sh ./say.sh '+line)
+            execute_cmd('sh ./say.sh '+line)
 
-            y2, sr2 = librosa.load("./raw/man/"+ line +".mp3")
+            y2, sr2 = librosa.load("./normalized/"+ line +".wav")
             #delete_file("./normalized/"+ line +".wav")
 
             #Computing MFCC values
@@ -25,4 +25,4 @@ def compareWordWithDictionary(word):
             dist, cost, acc_cost, path = dtw(mfcc1.T, mfcc2.T, dist=lambda x, y: norm(x - y, ord=1))
             print("The normalized distance between the two : ", word, line, dist)   # 0 for similar audios
 
-compareWordWithDictionary('banana')
+compareWordWithDictionary('harina')
