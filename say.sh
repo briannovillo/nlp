@@ -1,2 +1,2 @@
-#espeak $1 --stdout > ./normalized/$1.wav
-echo $1 | text2wave -o ./normalized/$1.wav
+espeak -v mb-es1 $1 --stdout > ./normalized/$1.wav
+#echo $1 | text2wave -o ./normalized/$1.wav

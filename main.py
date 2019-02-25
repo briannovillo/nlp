@@ -20,7 +20,7 @@ def compareWordWithDictionary(AUDIO_FILENAME):
             execute_cmd('sh ./say.sh '+word)
 
             y2, sr2 = librosa.load("./normalized/"+ word +".wav")
-            delete_file("./normalized/"+ word +".wav")
+            #delete_file("./normalized/"+ word +".wav")
 
             #Computing MFCC values
             mfcc1 = librosa.feature.mfcc(y1,sr1)
@@ -38,7 +38,7 @@ def compareWordWithDictionary(AUDIO_FILENAME):
 
 def RecognizeSpeech(AUDIO_FILENAME, num_seconds = 5):
     # record audio of specified length in specified audio file
-    record_audio(num_seconds, AUDIO_FILENAME)
+    #record_audio(num_seconds, AUDIO_FILENAME)
 
     # reading audio
     compareWordWithDictionary(AUDIO_FILENAME)

@@ -10,6 +10,7 @@ corneta
 marron
 colectivo
 botella
+hola
 termo
 gimnasio
 coleccion
