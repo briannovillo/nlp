@@ -5,16 +5,22 @@ from numpy.linalg import norm
 from file import read_file, delete_file, execute_cmd
 from record import record_audio
 
+class Word(object):
+    def __init__(self, score, name):
+        self.score = score
+        self.name = name
+
 def compareWordWithDictionary(AUDIO_FILENAME):
     #Loading audio file
     y1, sr1 = librosa.load(AUDIO_FILENAME)
 
+    distances = []
     with open('./dictionary.txt') as f:
-        for line in f.read().splitlines():
-            execute_cmd('sh ./say.sh '+line)
+        for word in f.read().splitlines():
+            execute_cmd('sh ./say.sh '+word)
 
-            y2, sr2 = librosa.load("./normalized/"+ line +".wav")
-            delete_file("./normalized/"+ line +".wav")
+            y2, sr2 = librosa.load("./normalized/"+ word +".wav")
+            delete_file("./normalized/"+ word +".wav")
 
             #Computing MFCC values
             mfcc1 = librosa.feature.mfcc(y1,sr1)
@@ -24,7 +30,11 @@ def compareWordWithDictionary(AUDIO_FILENAME):
             librosa.display.specshow(mfcc2)
 
             dist, cost, acc_cost, path = dtw(mfcc1.T, mfcc2.T, dist=lambda x, y: norm(x - y, ord=1))
-            print("Distance between your word and:", line, dist)   # 0 for similar audios
+            print("Distance between your word and:", word, dist)   # 0 for similar audios
+            distances.append(Word(dist,word))
+
+    distances.sort(key=lambda x: x.score)
+    print("You probably said:", distances[0].name)
 
 def RecognizeSpeech(AUDIO_FILENAME, num_seconds = 5):
     # record audio of specified length in specified audio file
