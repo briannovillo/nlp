@@ -11,3 +11,6 @@ sudo dpkg -i festvox-sflpc16k_1.0-1_all.deb && rm festvox-sflpc16k_1.0-1_all.deb
 sudo cp voices.scm.festival /usr/share/festival/voices.scm
 
 # Also you can use espeak https://ubuntuperonista.blogspot.com/2013/10/como-hago-text-to-speech-en-ubuntu.html
+
+# Hide record library (espeak mrola) errors
+export MALLOC_CHECK_=2
