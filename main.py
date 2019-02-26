@@ -19,7 +19,7 @@ def compareWordWithDictionary(AUDIO_FILENAME):
         for word in f.read().splitlines():
             execute_cmd('sh ./say.sh '+word)
 
-            # Comparing using espeak
+            # Comparing using espeak Spanish
             y2, sr2 = librosa.load("./normalized/"+ word +".wav")
             #delete_file("./normalized/"+ word +".wav")
             mfcc1 = librosa.feature.mfcc(y1,sr1)
@@ -30,9 +30,42 @@ def compareWordWithDictionary(AUDIO_FILENAME):
             print("Distance between your word and:", word, dist)   # 0 for similar audios
             distances.append(Word(dist,word))
 
-            # Comparing using festival
+            # Comparing using espeak Spanish2
             y2, sr2 = librosa.load("./normalized2/"+ word +".wav")
             #delete_file("./normalized2/"+ word +".wav")
+            mfcc1 = librosa.feature.mfcc(y1,sr1)
+            librosa.display.specshow(mfcc1)
+            mfcc2 = librosa.feature.mfcc(y2, sr2)
+            librosa.display.specshow(mfcc2)
+            dist, cost, acc_cost, path = dtw(mfcc1.T, mfcc2.T, dist=lambda x, y: norm(x - y, ord=1))
+            print("Distance between your word and:", word, dist)   # 0 for similar audios
+            distances.append(Word(dist,word))
+
+            # Comparing using espeak Venezuela
+            y2, sr2 = librosa.load("./normalized3/"+ word +".wav")
+            #delete_file("./normalized3/"+ word +".wav")
+            mfcc1 = librosa.feature.mfcc(y1,sr1)
+            librosa.display.specshow(mfcc1)
+            mfcc2 = librosa.feature.mfcc(y2, sr2)
+            librosa.display.specshow(mfcc2)
+            dist, cost, acc_cost, path = dtw(mfcc1.T, mfcc2.T, dist=lambda x, y: norm(x - y, ord=1))
+            print("Distance between your word and:", word, dist)   # 0 for similar audios
+            distances.append(Word(dist,word))
+
+            # Comparing using espeak Mexican
+            y2, sr2 = librosa.load("./normalized4/"+ word +".wav")
+            #delete_file("./normalized4/"+ word +".wav")
+            mfcc1 = librosa.feature.mfcc(y1,sr1)
+            librosa.display.specshow(mfcc1)
+            mfcc2 = librosa.feature.mfcc(y2, sr2)
+            librosa.display.specshow(mfcc2)
+            dist, cost, acc_cost, path = dtw(mfcc1.T, mfcc2.T, dist=lambda x, y: norm(x - y, ord=1))
+            print("Distance between your word and:", word, dist)   # 0 for similar audios
+            distances.append(Word(dist,word))
+
+            # Comparing using festival
+            y2, sr2 = librosa.load("./normalized5/"+ word +".wav")
+            #delete_file("./normalized5/"+ word +".wav")
             mfcc1 = librosa.feature.mfcc(y1,sr1)
             librosa.display.specshow(mfcc1)
             mfcc2 = librosa.feature.mfcc(y2, sr2)
@@ -46,11 +79,10 @@ def compareWordWithDictionary(AUDIO_FILENAME):
 
 def RecognizeSpeech(AUDIO_FILENAME, num_seconds = 5):
     # record audio of specified length in specified audio file
-    #record_audio(num_seconds, AUDIO_FILENAME)
+    record_audio(num_seconds, AUDIO_FILENAME)
 
     # reading audio
     compareWordWithDictionary(AUDIO_FILENAME)
 
 if __name__ == "__main__":
-    while True:
-        RecognizeSpeech('record.wav', 5)
+    RecognizeSpeech('record.wav', 5)

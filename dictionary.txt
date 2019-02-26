@@ -10,7 +10,6 @@ corneta
 marron
 colectivo
 hola
-termo
 gimnasio
 coleccion
 televisor
